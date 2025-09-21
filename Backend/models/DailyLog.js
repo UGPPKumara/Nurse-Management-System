@@ -23,11 +23,13 @@ const DailyLog = sequelize.define('DailyLog', {
     },
 });
 
-// Define Associations
-Nurse.hasMany(DailyLog, { foreignKey: 'nurseId' });
+// --- FIX: Added Associations ---
+// These lines are crucial for connecting the tables
 DailyLog.belongsTo(Nurse, { foreignKey: 'nurseId' });
+Nurse.hasMany(DailyLog, { foreignKey: 'nurseId' });
 
-Client.hasMany(DailyLog, { foreignKey: 'clientId' });
 DailyLog.belongsTo(Client, { foreignKey: 'clientId' });
+Client.hasMany(DailyLog, { foreignKey: 'clientId' });
+// -----------------------------
 
 module.exports = DailyLog;
